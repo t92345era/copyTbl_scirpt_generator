@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html lang="js">
+
+<head>
+  <meta charset="utf-8">
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <header>
+    コピーテーブル作成SQL生成ツール
+  </header>
+
+  <div id="app">
+
+    <div class="uk-container uk-margin">
+
+      <h2>入力</h2>
+      <div class="uk-tile uk-tile-muted uk-padding-small">
+        <form class="uk-form-horizontal">
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">元のテーブル名</label>
+            <div class="uk-form-controls">
+              <input class="uk-input uk-form-width-medium" v-model="copy_from" id="form-stacked-text" type="text">
+            </div>
+          </div>
+          <hr/>
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">コピー先テーブル名</label>
+            <div class="uk-form-controls uk-margin-small">
+              <div class="uk-margin-small">
+                <label><input class="uk-radio" type="radio" name="radio1"/>&nbsp;元のテーブル名_YYYYMMDD <small class="uk-text-muted">(現在日付)</small></label><br>
+              </div>
+              <hr/>
+              <div class="uk-margin-small">
+                <label><input class="uk-radio" type="radio" name="radio1"/>&nbsp;元のテーブル名_YYMMDD <small class="uk-text-muted">(現在日付)</small></label><br>
+              </div>
+              <hr/>
+              <div class="uk-margin-small">
+                <input class="uk-radio" type="radio" name="radio1"/>
+                <input class="uk-input uk-form-width-medium" v-model="copy_to" type="text"/>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="uk-container">
+
+      <h2>出力</h2>
+      <div class="uk-tile uk-tile-muted uk-padding-small">
+
+        <form class="uk-form-horizontal">
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">SQL Server</label>
+            <div class="uk-form-controls">
+              {{sqlServer}}
+            </div>
+          </div>
+          <hr/>
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">Oracle</label>
+            <div class="uk-form-controls">
+              {{oracle}}
+            </div>
+          </div>
+          <hr/>
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">PostgreSQL</label>
+            <div class="uk-form-controls">
+              {{postgreSQL}}
+            </div>
+          </div>
+          <hr/>
+          <div>
+            <label class="uk-form-label" for="form-stacked-text">MySQL</label>
+            <div class="uk-form-controls">
+              {{mySQL}}
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <!-- VUE-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
