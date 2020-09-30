@@ -52,6 +52,12 @@
     コピーテーブル作成SQL生成ツール
   </header>
 
+  <div class="uk-container uk-margin">
+    <p>テーブルを複製するためのSQLは、RDB毎に書き方が異なるため、意外と忘れがちになります。<br/>
+    このツールは、RDB（リレーショナルデータベース）別に、テーブルを複製するSQLを作成するツールです。<br/>
+    入力エリアにコピー元とコピー先のテーブル名を指定すれば、RDB別にテーブル複製用のスクリプトを一発で作ります。</p>
+  </div>
+
   <div id="app">
 
     <div class="uk-container uk-margin">
@@ -166,8 +172,12 @@
     <div v-if="clipmessage" class="clipmessage">クリップボードにコピーしました！</div>
   </div>
 
+  <div class="uk-container uk-margin">
+    <h3>免責事項</h3>
+    当サイト、またはコンテンツのご利用により、万一、ご利用者様に何らかの不都合や損害が発生したとしても、当記事の筆者ならびに当サイトの管理者は、何らの責任を負うものではありません。
+  </div>
 
-  <!-- VUE-->
+  <!-- Vue.js-->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
   <script src="app.js"></script>
 </body>
