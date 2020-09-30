@@ -29,6 +29,13 @@
     .uk-tile hr {
       border-top: 1px solid rgba(0, 0, 0, .14);
     }
+
+    .clipmessage {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 228, 141, 0.5);
+    }
   </style>
 
   <!-- UIkit JS -->
@@ -94,8 +101,9 @@
               <div class="uk-form-controls ">
                 <div class="uk-inline uk-width-expand">
 
-                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
-                  <input class="uk-input " v-model="sqlServer" readonly type="text">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" 
+                      @click.prevent="copy('sqlserver')" uk-icon="icon: copy"></a>
+                  <input ref="sqlserver" class="uk-input " v-model="sqlServer" readonly type="text">
                 </div>
               </div>
             </div>
@@ -104,8 +112,9 @@
               <label class="uk-form-label" for="form-stacked-text">Oracle</label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-expand">
-                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
-                  <input class="uk-input" v-model="oracle" readonly type="text">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" 
+                     @click.prevent="copy('oracle')" uk-icon="icon: copy"></a>
+                  <input ref="oracle" class="uk-input" v-model="oracle" readonly type="text">
                 </div>
               </div>
             </div>
@@ -116,8 +125,9 @@
               <label class="uk-form-label" for="form-stacked-text">PostgreSQL</label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-expand">
-                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
-                  <input class="uk-input " v-model="postgreSQL" readonly type="text">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" 
+                    @click.prevent="copy('postgresql')" uk-icon="icon: copy"></a>
+                  <input ref="postgresql" class="uk-input" v-model="postgreSQL" readonly type="text">
                 </div>
               </div>
             </div>
@@ -126,8 +136,9 @@
               <label class="uk-form-label" for="form-stacked-text">MySQL</label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-expand">
-                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
-                  <input class="uk-input " v-model="mySQL" readonly type="text">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" 
+                      @click.prevent="copy('mysql')" uk-icon="icon: copy"></a>
+                  <input ref="mysql" class="uk-input " v-model="mySQL" readonly type="text">
                 </div>
               </div>
             </div>
@@ -138,8 +149,9 @@
               <label class="uk-form-label" for="form-stacked-text">SQLite</label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-expand">
-                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
-                  <input class="uk-input " v-model="sqLite" readonly type="text">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" 
+                      @click.prevent="copy('sqlite')" uk-icon="icon: copy"></a>
+                  <input ref="sqlite" class="uk-input " v-model="sqLite" readonly type="text">
                 </div>
               </div>
             </div>
@@ -151,7 +163,7 @@
       </div>
     </div>
 
-
+    <div v-if="clipmessage" class="clipmessage">クリップボードにコピーしました！</div>
   </div>
 
 

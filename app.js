@@ -1,15 +1,24 @@
 new Vue({
   el: "#app",
   data: {
-    copy_from: "",
+    copy_from: "SAMPLE",
     copy_to_input: "",
     mode: "yyyymmdd",
     yyyy: "",
     yy: "",
+    clipmessage: false,
   },
   methods: {
     sayHello() {
       this.msg = "Hello!"
+    },
+    copy(name) {
+      this.$refs[name].select();
+      document.execCommand("copy");
+      this.clipmessage = true;
+      setTimeout(() => {
+        this.clipmessage = false;
+      }, 3000);
     }
   },
   computed: {
@@ -44,7 +53,7 @@ new Vue({
     var d = ( '' + dt.getDate() ).slice( -2 );
 
     this.yyyy = fYear + m + d;
-    this.y = sYear + m + d;
+    this.yy = sYear + m + d;
   }
   
 })
