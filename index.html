@@ -16,6 +16,19 @@
       color: #fff;
       margin-bottom: 20px;
     }
+
+    .uk-tile {
+      background: #f5f5f5 !important;
+    }
+
+    .uk-tile .uk-form-label {
+      font-weight: bold;
+      color: #777;
+    }
+
+    .uk-tile hr {
+      border-top: 1px solid rgba(0, 0, 0, .14);
+    }
   </style>
 
   <!-- UIkit JS -->
@@ -35,31 +48,33 @@
   <div id="app">
 
     <div class="uk-container uk-margin">
-
       <h2>入力</h2>
-      <div class="uk-tile uk-tile-muted uk-padding-small">
-        <form class="uk-form-horizontal">
+      <div class="uk-tile uk-padding-small">
+        <form class="uk-form-stacked">
           <div>
             <label class="uk-form-label" for="form-stacked-text">元のテーブル名</label>
             <div class="uk-form-controls">
-              <input class="uk-input uk-form-width-medium" v-model="copy_from" id="form-stacked-text" type="text">
+              <input class="uk-input uk-width-large uk-width-expand@s" v-model="copy_from" id="form-stacked-text"
+                type="text">
             </div>
           </div>
-          <hr/>
+          <hr />
           <div>
             <label class="uk-form-label" for="form-stacked-text">コピー先テーブル名</label>
             <div class="uk-form-controls uk-margin-small">
               <div class="uk-margin-small">
-                <label><input class="uk-radio" type="radio" name="radio1"/>&nbsp;元のテーブル名_YYYYMMDD <small class="uk-text-muted">(現在日付)</small></label><br>
+                <label><input class="uk-radio" type="radio" value="yyyymmdd" v-model="mode" />&nbsp;元のテーブル名_YYYYMMDD
+                  <small class="uk-text-muted">(現在日付)</small></label><br>
               </div>
-              <hr/>
+
               <div class="uk-margin-small">
-                <label><input class="uk-radio" type="radio" name="radio1"/>&nbsp;元のテーブル名_YYMMDD <small class="uk-text-muted">(現在日付)</small></label><br>
+                <label><input class="uk-radio" type="radio" value="yymmdd" v-model="mode" />&nbsp;元のテーブル名_YYMMDD <small
+                    class="uk-text-muted">(現在日付)</small></label><br>
               </div>
-              <hr/>
+              <!--名称直接入力-->
               <div class="uk-margin-small">
-                <input class="uk-radio" type="radio" name="radio1"/>
-                <input class="uk-input uk-form-width-medium" v-model="copy_to" type="text"/>
+                <input class="uk-radio" type="radio" value="input" v-model="mode" />
+                <input class="uk-input uk-form-width-large"　v-bind:disabled="mode!='input'" v-model="copy_to_input" type="text" />
               </div>
             </div>
           </div>
@@ -68,39 +83,70 @@
     </div>
 
     <div class="uk-container">
-
       <h2>出力</h2>
-      <div class="uk-tile uk-tile-muted uk-padding-small">
+      <div class="uk-tile uk-padding-small">
 
-        <form class="uk-form-horizontal">
-          <div>
-            <label class="uk-form-label" for="form-stacked-text">SQL Server</label>
-            <div class="uk-form-controls">
-              {{sqlServer}}
-            </div>
-          </div>
-          <hr/>
-          <div>
-            <label class="uk-form-label" for="form-stacked-text">Oracle</label>
-            <div class="uk-form-controls">
-              {{oracle}}
-            </div>
-          </div>
-          <hr/>
-          <div>
-            <label class="uk-form-label" for="form-stacked-text">PostgreSQL</label>
-            <div class="uk-form-controls">
-              {{postgreSQL}}
-            </div>
-          </div>
-          <hr/>
-          <div>
-            <label class="uk-form-label" for="form-stacked-text">MySQL</label>
-            <div class="uk-form-controls">
-              {{mySQL}}
-            </div>
-          </div>
+        <form class="uk-form-stacked">
+          <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
 
+            <div>
+              <label class="uk-form-label" for="form-stacked-text">SQL Server</label>
+              <div class="uk-form-controls ">
+                <div class="uk-inline uk-width-expand">
+
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
+                  <input class="uk-input " v-model="sqlServer" readonly type="text">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="uk-form-label" for="form-stacked-text">Oracle</label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-expand">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
+                  <input class="uk-input" v-model="oracle" readonly type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+            <div>
+              <label class="uk-form-label" for="form-stacked-text">PostgreSQL</label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-expand">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
+                  <input class="uk-input " v-model="postgreSQL" readonly type="text">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="uk-form-label" for="form-stacked-text">MySQL</label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-expand">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
+                  <input class="uk-input " v-model="mySQL" readonly type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+            <div>
+              <label class="uk-form-label" for="form-stacked-text">SQLite</label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-expand">
+                  <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: copy"></a>
+                  <input class="uk-input " v-model="sqLite" readonly type="text">
+                </div>
+              </div>
+            </div>
+            <div>
+              <!--dummybox-->
+            </div>
+          </div>
         </form>
       </div>
     </div>
